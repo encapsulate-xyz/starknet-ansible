@@ -19,7 +19,7 @@
     path: "{{ item }}"
     state: directory
     owner: "{{ service_identifier }}"
-    group: "{{ service_identifier }}"
+    group: "{{ project }}"
     mode: "0755"
   loop: "{{ directories }}"
 
