@@ -6,7 +6,7 @@ all:
   children:
     starknet:
       hosts:
-        attestator.starknet.mainnet.encapsulate.xyz:
-          type: attestator
+        attestor.starknet.mainnet.encapsulate.xyz:
+          type: attestor
         node.starknet.mainnet.encapsulate.xyz:
           type: node

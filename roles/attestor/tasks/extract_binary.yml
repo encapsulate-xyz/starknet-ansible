@@ -11,7 +11,7 @@
   vars:
     suffix_url: "{{ ansible_architecture }}-unknown-{{ ansible_system | lower }}-gnu.tar.gz"
   ansible.builtin.unarchive:
-    src: "{{ starknet.attestator.source_url }}/{{ starknet.attestator.version }}/{{ attestator_service_default_binary_name }}-{{ suffix_url }}"
+    src: "{{ starknet.attestor.source_url }}/{{ starknet.attestor.version }}/{{ attestor_service_default_binary_name }}-{{ suffix_url }}"
     dest: "{{ tmp_dir }}/{{ service_identifier }}"
     remote_src: true
     owner: root
@@ -20,8 +20,8 @@
 
 - name: Copy binary file
   ansible.builtin.copy:
-    src: "{{ tmp_dir }}/{{ service_identifier }}/{{ attestator_service_default_binary_name }}"
-    dest: "{{ attestator_bin_dir }}/{{ service_identifier }}"
+    src: "{{ tmp_dir }}/{{ service_identifier }}/{{ attestor_service_default_binary_name }}"
+    dest: "{{ attestor_bin_dir }}/{{ service_identifier }}"
     remote_src: true
     owner: root
     group: root

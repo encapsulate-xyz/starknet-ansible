@@ -17,7 +17,7 @@ default_node_types:
 tmp_dir: /tmp
 
 starknet:
-  attestator:
+  attestor:
     source_url: https://github.com/eqlabs/starknet-validator-attestation/releases/download
     ports:
       metrics_port: 9090

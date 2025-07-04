@@ -1,6 +1,6 @@
 ---
-attestator_ufw_rules:
-  - port: "{{ starknet.attestator.ports.metrics_port }}"
+attestor_ufw_rules:
+  - port: "{{ starknet.attestor.ports.metrics_port }}"
     proto: tcp
     rule: allow
     from: "{{ monitor_server_dns }}"
