@@ -4,11 +4,9 @@ all:
   vars:
     env: mainnet
   children:
-    sui:
+    starknet:
       hosts:
-        bridge.sui.mainnet.encapsulate.xyz:
-          type: bridge
-        validator.sui.mainnet.encapsulate.xyz:
-          type: validator
-        fullnode.sui.mainnet.encapsulate.xyz:
-          type: fullnode
+        attestator.starknet.mainnet.encapsulate.xyz:
+          type: attestator
+        node.starknet.mainnet.encapsulate.xyz:
+          type: node
