@@ -1,0 +1,7 @@
+---
+attestator_ufw_rules:
+  - port: "{{ starknet.attestator.ports.metrics_port }}"
+    proto: tcp
+    rule: allow
+    from: "{{ monitor_server_dns }}"
+    comment: metrics_port

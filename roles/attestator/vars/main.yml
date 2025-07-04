@@ -1,0 +1,9 @@
+---
+# maintains file name, binary names, and anything which is not a directory or path
+
+# binary names
+attestator_service_default_binary_name: starknet-validator-attestation
+
+# Environment file names
+attestator_environment_secret_file_name: "{{ service_identifier }}.secrets.env"
+attestator_environment_general_file_name: "{{ service_identifier }}.env"

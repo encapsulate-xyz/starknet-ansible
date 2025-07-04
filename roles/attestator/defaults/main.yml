@@ -1,0 +1,20 @@
+---
+# maintains directories and paths
+attestator_home_dir: /opt/{{ service_identifier }}
+
+attestator_bin_dir: "{{ attestator_home_dir }}/bin"
+attestator_data_dir: "{{ attestator_home_dir }}/data"
+attestator_env_dir: "{{ attestator_home_dir }}/environment"
+attestator_log_dir: "{{ attestator_home_dir }}/log"
+
+attestator_directories:
+  - "{{ attestator_home_dir }}"
+  - "{{ attestator_bin_dir }}"
+  - "{{ attestator_data_dir }}"
+  - "{{ attestator_env_dir }}"
+  - "{{ attestator_log_dir }}"
+
+attestator_log_file_path: "{{ attestator_log_dir }}/{{ service_identifier }}.log"
+
+attestator_environment_secret_file_path: "{{ attestator_env_dir }}/{{ attestator_environment_secret_file_name }}"
+attestator_environment_general_file_path: "{{ attestator_env_dir }}/{{ attestator_environment_general_file_name }}"
