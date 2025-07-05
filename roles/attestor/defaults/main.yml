@@ -1,0 +1,18 @@
+---
+# maintains directories and paths
+attestor_home_dir: /opt/{{ service_identifier }}
+
+attestor_bin_dir: "{{ attestor_home_dir }}/bin"
+attestor_env_dir: "{{ attestor_home_dir }}/environment"
+attestor_log_dir: "{{ attestor_home_dir }}/log"
+
+attestor_directories:
+  - "{{ attestor_home_dir }}"
+  - "{{ attestor_bin_dir }}"
+  - "{{ attestor_env_dir }}"
+  - "{{ attestor_log_dir }}"
+
+attestor_log_file_path: "{{ attestor_log_dir }}/{{ service_identifier }}.log"
+
+attestor_environment_secret_file_path: "{{ attestor_env_dir }}/{{ attestor_environment_secret_file_name }}"
+attestor_environment_general_file_path: "{{ attestor_env_dir }}/{{ attestor_environment_general_file_name }}"

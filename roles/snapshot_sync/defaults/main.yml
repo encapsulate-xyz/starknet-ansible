@@ -1,0 +1,5 @@
+---
+# maintains directories and paths
+snapshot_sync_home_dir: "/opt/{{ service_identifier }}"
+
+snapshot_sync_data_dir: "{{ snapshot_sync_home_dir }}/data"

@@ -1,0 +1,77 @@
+---
+- name: Install Dependencies
+  ansible.builtin.apt:
+    name: rclone
+    state: present
+    update_cache: true
+
+- name: Stop starknet services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: stopped
+  loop:
+    - starknet-attestaor.service
+    - starknet-node.service
+
+- name: Delete data directory
+  ansible.builtin.file:
+    path: "{{ snapshot_sync_data_dir}}"
+    state: absent
+
+- name: Recreate empty data directory
+  ansible.builtin.file:
+    path: "{{ snapshot_sync_data_dir }}"
+    state: directory
+    owner: "{{ service_identifier }}"
+    group: "{{ service_identifier }}"
+    mode: "0755"
+
+- name: Write temporary rclone configuration
+  ansible.builtin.copy:
+    dest: "{{ tmp_dir }}/rclone.conf"
+    mode: "0600"
+    content: "{{ snapshot_sync_rclone_config_content }}"
+
+- name: Download snapshot
+  ansible.builtin.command: >
+    rclone copy -P pathfinder-snapshots:pathfinder-snapshots/{{ snapshot_file_name | default(starknet.node.snapshot_file_name) }} 
+    {{ snapshot_sync_data_dir }}
+  environment:
+    RCLONE_CONFIG: "{{ tmp_dir }}/rclone.conf"
+  async: 100000
+  poll: 20
+  register: rclone_result
+  changed_when: rclone_result.stdout is defined and rclone_result.stdout != ""
+
+- name: Decompress snapshot
+  ansible.builtin.command: >
+    zstd -T0 -d {{ snapshot_sync_data_dir }}/{{ snapshot_file_name | default(starknet.node.snapshot_file_name) }} 
+    -o {{ snapshot_sync_data_dir }}/{{ starknet.node.compress_snapshot_file_name }}
+  args:
+    creates: "{{ snapshot_sync_data_dir }}/{{ starknet.node.compress_snapshot_file_name }}"
+    chdir: "{{ snapshot_sync_data_dir }}"
+
+- name: Delete snapshot
+  ansible.builtin.file:
+    path: "{{ snapshot_sync_data_dir }}/{{ snapshot_file_name | default(starknet.node.snapshot_file_name) }}"
+    state: absent
+
+- name: Set ownership of synced files
+  ansible.builtin.file:
+    path: "{{ snapshot_sync_data_dir }}"
+    owner: "{{ service_identifier }}"
+    group: "{{ service_identifier }}"
+    recurse: true
+
+- name: Restart starknet services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: restarted
+  loop:
+    - starknet-node.service
+    - starknet-attestaor.service
+
+- name: Clean up temporary rclone configuration
+  ansible.builtin.file:
+    path: "{{ tmp_dir }}/rclone.conf"
+    state: absent

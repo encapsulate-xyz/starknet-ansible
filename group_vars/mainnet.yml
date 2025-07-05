@@ -1,9 +1,13 @@
 ---
 # maintains versions and can overwrite all.yml
-sui:
-  validator:
-    version: c9ae0f9282a0643544db27409e07d3ac5dd09105
-  fullnode:
-    version: c9ae0f9282a0643544db27409e07d3ac5dd09105
-  bridge:
-    version: 08a4ef986fdf44a2233f010c5e3764ae888c54a2
+starknet:
+  node:
+    version: v0.17.0
+    network: mainnet
+    snapshot_file_name: mainnet_0.16.0_1534174.sqlite.zst
+    compress_snapshot_file_name: mainnet.sqlite
+  attestor:
+    version: v0.3.3
+    staking_contract_address: "0x00ca1702e64c81d9a07b86bd2c540188d92a2c73cf5cc0e508d949015e7e84a7"
+    attestation_contract_address: "0x10398fe631af9ab2311840432d507bf7ef4b959ae967f1507928f5afe888a99"
+    staker_operational_address: ""

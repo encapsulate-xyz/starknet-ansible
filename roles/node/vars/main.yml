@@ -1,0 +1,8 @@
+---
+# maintains file name, binary names, and anything which is not a directory or path
+
+# binary names
+node_service_default_binary_name: pathfinder
+
+# Environment file names
+node_environment_general_file_name: "{{ service_identifier }}.env"
