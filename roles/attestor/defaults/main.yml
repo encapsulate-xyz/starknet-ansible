@@ -3,14 +3,12 @@
 attestor_home_dir: /opt/{{ service_identifier }}
 
 attestor_bin_dir: "{{ attestor_home_dir }}/bin"
-attestor_data_dir: "{{ attestor_home_dir }}/data"
 attestor_env_dir: "{{ attestor_home_dir }}/environment"
 attestor_log_dir: "{{ attestor_home_dir }}/log"
 
 attestor_directories:
   - "{{ attestor_home_dir }}"
   - "{{ attestor_bin_dir }}"
-  - "{{ attestor_data_dir }}"
   - "{{ attestor_env_dir }}"
   - "{{ attestor_log_dir }}"
 
