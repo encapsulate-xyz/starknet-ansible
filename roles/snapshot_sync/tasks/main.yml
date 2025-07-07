@@ -10,7 +10,7 @@
     name: "{{ item }}"
     state: stopped
   loop:
-    - starknet-attestaor.service
+    - starknet-attestor.service
     - starknet-node.service
 
 - name: Delete data directory
@@ -69,7 +69,7 @@
     state: restarted
   loop:
     - starknet-node.service
-    - starknet-attestaor.service
+    - starknet-attestor.service
 
 - name: Clean up temporary rclone configuration
   ansible.builtin.file:
