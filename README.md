@@ -31,7 +31,7 @@ The playbook dynamically retrieves secret environment file from HashiCorp Vault.
 `<environment>/<project>/<organization>/<type>/<file_name>`
 
 For example:
-[`mainnet/starknet/encapsulate/attestor/starknet-attestor.secrets.env`](roles/attestor/templates/mainnet/systemd.service.j2)
+[`mainnet/starknet/encapsulate/attestor/starknet-attestor.secrets.env`](roles/attestor/templates/mainnet/secrets.env.example)
 
 This structure ensures easy organization and secure retrieval of secrets.
 
