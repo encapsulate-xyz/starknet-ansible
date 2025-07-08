@@ -29,8 +29,9 @@ This playbook relies on HashiCorp Vault to securely retrieve sensitive files, su
 
 The playbook dynamically retrieves secret environment file from HashiCorp Vault. The keys are expected to follow a structured path format:
 `<environment>/<project>/<organization>/<type>/<file_name>`
+
 For example:
-`mainnet/starknet/encapsulate/attestor/starknet-attestor.secrets.env`
+[`mainnet/starknet/encapsulate/attestor/starknet-attestor.secrets.env`](roles/attestor/templates/mainnet/systemd.service.j2)
 
 This structure ensures easy organization and secure retrieval of secrets.
 
