@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Set variables
+PUSHGATEWAY_URL="https://{{ pushgateway_dns }}"
+
+log() {
+  echo "[$(date +"%Y-%m-%d %H:%M:%S")] $1"
+}
+
+log "Querying Starknet Balance"
+
+BALANCE_QUERY=$(curl -s -X POST https://starknet-mainnet.public.blastapi.io \
+-H "Content-Type: application/json" \
+-d '{
+  "jsonrpc": "2.0",
+  "method": "starknet_call",
+  "params": [
+    {
+      "contract_address": "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
+      "entry_point_selector": "0x2e4263afad30923c891518314c3c95dbe830a16874e8abc5777a9a20b54c76e",
+      "calldata": ["{{ starknet.account_address }}"]
+    },
+    "latest"
+  ],
+  "id": 1
+}' | jq -r '.result[0]')
+
+if [ $? -eq 0 ] && [ -n "$BALANCE_QUERY" ]; then
+  log "Successfully fetched account balance"
+else
+  log "Failed to fetch account balance"
+  exit 1
+fi
+
+# Remove the '0x' prefix from the hex value and convert lowercase letters to uppercase
+HEX_CLEAN=$(echo "${BALANCE_QUERY:2}" | tr 'a-f' 'A-F')
+VALUE_DEC=$(echo "ibase=16; $HEX_CLEAN" | bc)
+
+# Convert the raw integer balance into a human-readable token amount
+TOKEN_BALANCE=$(echo "scale=18; $VALUE_DEC / 10^18" | bc)
+
+# Push metrics to Pushgateway
+log "Pushing vote metrics to Pushgateway"
+cat <<EOF | curl --max-time 30 --data-binary @- "$PUSHGATEWAY_URL/metrics/job/chain_exporter/project/{{ project }}/env/{{ env }}"
+# TYPE starknet_token_balance gauge
+starknet_token_balance ${TOKEN_BALANCE}
+EOF
+
+log "Successfully pushed to Pushgateway"
