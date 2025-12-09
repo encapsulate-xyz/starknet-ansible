@@ -2,12 +2,12 @@
 # maintains versions and can overwrite all.yml
 starknet:
   node:
-    version: v0.20.5
+    version: v0.21.3
     network: mainnet
     snapshot_file_name: mainnet_0.16.0_1534174.sqlite.zst
     compress_snapshot_file_name: mainnet.sqlite
   attestor:
-    version: v0.5.1
+    version: v0.5.2
     staking_contract_address: "0x00ca1702e64c81d9a07b86bd2c540188d92a2c73cf5cc0e508d949015e7e84a7"
     attestation_contract_address: "0x10398fe631af9ab2311840432d507bf7ef4b959ae967f1507928f5afe888a99"
     staker_operational_address: "0x03f3679c2dd729d4f2e22db68d52b1a9defa2246e9fcc4bc644e47801c845c81"
