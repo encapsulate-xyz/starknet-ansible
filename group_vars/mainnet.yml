@@ -2,7 +2,7 @@
 # maintains versions and can overwrite all.yml
 starknet:
   node:
-    version: v0.21.3
+    version: v0.21.5
     network: mainnet
     snapshot_file_name: mainnet_0.16.0_1534174.sqlite.zst
     compress_snapshot_file_name: mainnet.sqlite
