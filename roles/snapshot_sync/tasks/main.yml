@@ -7,11 +7,8 @@
 
 - name: Stop starknet services
   ansible.builtin.systemd:
-    name: "{{ item }}"
+    name: starknet-node.service
     state: stopped
-  loop:
-    - starknet-attestor.service
-    - starknet-node.service
 
 - name: Delete data directory
   ansible.builtin.file:
