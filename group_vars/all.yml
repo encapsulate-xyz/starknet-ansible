@@ -20,7 +20,7 @@ starknet:
   attestor:
     source_url: https://github.com/eqlabs/starknet-validator-attestation/releases/download
     ports:
-      metrics_port: 9090
+      metrics_port: 9091
   node:
     source_url: https://github.com/eqlabs/pathfinder/releases/download
     ports:
