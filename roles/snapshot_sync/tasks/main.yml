@@ -62,7 +62,7 @@
 
 - name: Restart starknet services
   ansible.builtin.systemd:
-    name: starknet-attestor.service
+    name: starknet-node.service
     state: restarted
 
 - name: Clean up temporary rclone configuration
