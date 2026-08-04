@@ -1,0 +1,20 @@
+[Unit]
+Description={{ service_identifier }}
+
+[Service]
+User={{ service_identifier }}
+Group={{ project }}
+WorkingDirectory={{ attestor_home_dir }}
+EnvironmentFile={{ attestor_environment_secret_file_path }}
+EnvironmentFile={{ attestor_environment_general_file_path }}
+ExecStart={{ attestor_bin_dir }}/{{ service_identifier }} \
+    --local-signer
+Restart=always
+RestartSec=4
+LimitNOFILE=65536
+MemoryMax=64G
+StandardOutput=append:{{ attestor_log_file_path }}
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target
