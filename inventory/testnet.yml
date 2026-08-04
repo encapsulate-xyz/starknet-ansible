@@ -1,0 +1,12 @@
+---
+# maintains testnet inventory grouped by project names
+all:
+  vars:
+    env: testnet
+  children:
+    starknet:
+      hosts:
+        ts.attestor.starknet.testnet.encapsulate.xyz:
+          type: attestor
+        ts.node.starknet.testnet.encapsulate.xyz:
+          type: node

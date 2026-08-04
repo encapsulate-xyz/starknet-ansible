@@ -1,0 +1,13 @@
+---
+# maintains versions and can overwrite all.yml
+starknet:
+  node:
+    version: v0.23.1
+    network: sepolia-testnet
+    snapshot_file_name: testnet-sepolia_0.22.0_12894025_0.22.7.sqlite.zst
+    compress_snapshot_file_name: testnet-sepolia.sqlite
+  attestor:
+    version: v0.5.2
+    staking_contract_address: "0x03745ab04a431fc02871a139be6b93d9260b0ff3e779ad9c8b377183b23109f1"
+    attestation_contract_address: "0x03f32e152b9637c31bfcf73e434f78591067a01ba070505ff6ee195642c9acfb"
+    staker_operational_address: "0x073da1ae7faeb153815ab710f2d702bd162bdc302aa00f4d0e4d8e8acae62cae"
