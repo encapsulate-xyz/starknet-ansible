@@ -2,7 +2,7 @@
 # maintains versions and can overwrite all.yml
 starknet:
   node:
-    version: v0.23.1
+    version: v0.24.0
     network: sepolia-testnet
     snapshot_file_name: testnet-sepolia_0.22.0_12894025_0.22.7.sqlite.zst
     compress_snapshot_file_name: testnet-sepolia.sqlite
