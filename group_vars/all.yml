@@ -18,11 +18,11 @@ tmp_dir: /tmp
 
 starknet:
   attestor:
-    source_url: https://github.com/eqlabs/starknet-validator-attestation/releases/download
+    source_url: https://github.com/software-mansion/starknet-validator-attestation/releases/download
     ports:
       metrics_port: 9091
   node:
-    source_url: https://github.com/eqlabs/pathfinder/releases/download
+    source_url: https://github.com/software-mansion/pathfinder/releases/download
     ports:
       rpc_port: 9545
       metrics_port: 9685
