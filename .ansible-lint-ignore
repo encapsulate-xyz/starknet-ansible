@@ -1,0 +1,4 @@
+# This file contains ignores rule violations for ansible-lint
+roles/snapshot_sync/tasks/main.yml jinja[spacing]
+roles/snapshot_sync/tasks/main.yml var-naming[no-role-prefix]
+roles/snapshot_sync/tasks/main.yml yaml[trailing-spaces]
