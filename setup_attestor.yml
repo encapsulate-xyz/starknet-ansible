@@ -27,3 +27,17 @@
         - name: Include attestor role
           ansible.builtin.include_role:
             name: attestor
+            public: true
+
+  post_tasks:
+    - name: Verify attestor
+      when: type in allowed_node_types
+      block:
+        # The attestor prints its crate version, without the leading v
+        - name: Include verify service task
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          vars:
+            log_file_path: "{{ attestor_log_file_path }}"
+            version_command: "{{ attestor_bin_dir }}/{{ service_identifier }} --version"
+            expected_version: "{{ starknet.attestor.version | regex_replace('^v', '') }}"
+            health_url: "http://localhost:{{ starknet.attestor.ports.metrics_port }}/metrics"

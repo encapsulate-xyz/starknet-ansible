@@ -27,3 +27,15 @@
         - name: Include snapshot sync role
           ansible.builtin.include_role:
             name: snapshot_sync
+            public: true
+
+  post_tasks:
+    - name: Verify node
+      when: type in allowed_node_types
+      block:
+        # Running check only: the binary is unchanged, and pathfinder opens its monitor port
+        # only after migrating the restored database, which can take longer than the check waits
+        - name: Include verify service task
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          vars:
+            log_file_path: "{{ snapshot_sync_home_dir }}/log/{{ service_identifier }}.log"
